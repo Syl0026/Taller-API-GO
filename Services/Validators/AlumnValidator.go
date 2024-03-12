@@ -1,14 +1,70 @@
 package Validators //! SIEMPRE SE DEBE DE ESCRIBIR EL PAQUETE O CARPETA
 
-import "tallerAPIgo/Models" //!Se importa solo
+import (
+	"tallerAPIgo/Models" //!Se importa solo
+
+	"gorm.io/gorm"
+)
 
 // Cada servicio va a tener su validador
 // Hay una librería para validar los datos
 
-//& func es una función
-//$ func NombreFunción(variable *Tipo(Clase).Variable(estructura)) (tipoReturn){}
+// & func es una función
+// $ func NombreFunción(variable *Tipo(Clase).Variable(estructura)) (tipoReturn){}
 func CreateAlumnValidator(model *Models.AlumnModel) (bool, string) {
+	//? ok funciona como bandera, el mensaje se guarde en msg y se evalúa el ok
+	if ok, msg := requiredData(model); !ok {
+		return ok, msg
+	}
+	return true, ""
+}
 
+// $---------------------------------------------------------
+func UpdateAlumnValidator(model *Models.AlumnModel, db *gorm.DB) (bool, string) {
+	if model.IdAlumn <= 0 {
+		return false, "IdAlum es requerido"
+	}
+
+	//! Falta validar si existe el id en la base de datos
+	var count int64
+	//% Hace una consulta select *
+	db.Model(&Models.AlumnModel{}).Where("id_alumn = ?", model.IdAlumn).Count(&count)
+
+	if count <= 0 {
+		return false, "El IdAlumn no existe"
+	}
+
+	//? ok funciona como bandera, el mensaje se guarde en msg y se evalúa el ok
+	if ok, msg := requiredData(model); !ok {
+		return ok, msg
+	}
+
+	return true, ""
+}
+
+// $---------------------------------------------------------
+func DeleteAlumnValidator(idAlumn uint, db *gorm.DB) (bool, string) {
+	if idAlumn <= 0 {
+		return false, "IdAlum es requerido"
+	}
+
+	//! Falta validar si existe el id en la base de datos
+	var count int64
+	//% Hace una consulta select *
+	//& db.Base(&Carpeta.Objeto{}).Where("consulta = ?" llave.Atributo).Count(&variableCount)
+	db.Model(&Models.AlumnModel{}).Where("id_alumno = ?", idAlumn).Count(&count)
+
+	if count <= 0 {
+		return false, "El IdAlumn no existe"
+	}
+
+	return true, ""
+}
+
+//% Si se coloca el nombre de la función en minúscula solo se puede utilizar dentro de esa clase.
+//% Si se coloca en mayúscula se vuelve pública
+
+func requiredData(model *Models.AlumnModel) (bool, string) {
 	//% Estamos validando datos requeridos
 	if model.Name == "" {
 		return false, "Error: Nombre no válido, el nombre es requerido"
@@ -44,5 +100,5 @@ func CreateAlumnValidator(model *Models.AlumnModel) (bool, string) {
 		return false, "Error: Logitud máxima es 50"
 	}
 
-	return true, "" //$ Valores de return
+	return true, ""
 }

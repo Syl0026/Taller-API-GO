@@ -22,7 +22,9 @@ func RetrieveAlumn(model *Models.AlumnModel, db *gorm.DB) []Models.AlumnModel {
 
 // % gorm.DB devolverá una conexión
 func getWhere(model *Models.AlumnModel, db *gorm.DB) *gorm.DB {
-	db = db.Where("last_name = ?", model.LastName)
+	if len(model.LastName) > 0 {
+		db = db.Where("last_name LIKE = ?", "%"+model.LastName+"%")
+	}
 
 	//$ Retornamos el db con los where que hayan cumplido la condición
 	return db

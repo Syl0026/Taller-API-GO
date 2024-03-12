@@ -15,11 +15,17 @@ type AlumnModel struct { //@una estructura como clase
 	//& type: es el tipo de variable (int, varchar, bool, ...)
 	//! Al guardarse se le otorga formalidad al código
 
-	IdAlum    int    `gorm:"type:int;not null"` //Variable IdAlum como tipo entero no nulo
+	//% un entero especial que incrementa
+	IdAlumn   uint   `gorm:"primaryKey;autoIncrement:true"` //Variable IdAlum como tipo entero no nulo
 	LastName  string `gorm:"type:varchar(150);not null"`
 	Name      string `gorm:"type:varchar(150);not null"`
 	Phone     string `gorm:"type:varchar(50);not null"`
 	Email     string `gorm:"type:varchar(200);not null"`
 	Curp      string `gorm:"type:varchar(18);not null"`
 	Suspended *bool  `gorm:"type:boolean"` //?  apunta a una dirección de memoria. Acepta nulos
+}
+
+//& indica el nombre de la tabla
+func (alumn AlumnModel) TableName() string {
+	return "alumn"
 }
