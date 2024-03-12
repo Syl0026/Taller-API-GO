@@ -1,0 +1,13 @@
+Creación de tabla
+
+Create Table alumn(
+id_alumn serial PRIMARY KEY,
+last_name character varying(150) NOT NULL,
+name character varying(150)NOT NULL,
+phone_cel character varying(50) NOT NULL UNIQUE,
+email character varying(200) NOT NULL UNIQUE,
+curp character varying(150) NOT NULL UNIQUE,
+suspended boolean
+)
+
+//----------------------------------
