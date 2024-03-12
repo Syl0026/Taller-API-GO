@@ -11,10 +11,7 @@ import (
 // & El error indica que devuelve el mensaje o tipo de error
 func CreateAlumn(model *Models.AlumnModel, db *gorm.DB) error {
 	return db.Create(model).Error
-}
-
-//! No existe Try-catch
-
+} //! No existe Try-catch
 func UpdateAlumn(model *Models.AlumnModel, db *gorm.DB) error {
 	return db.Save(model).Error
 }

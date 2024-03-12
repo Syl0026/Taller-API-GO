@@ -19,7 +19,7 @@ type AlumnModel struct { //@una estructura como clase
 	IdAlumn   uint   `gorm:"primaryKey;autoIncrement:true"` //Variable IdAlum como tipo entero no nulo
 	LastName  string `gorm:"type:varchar(150);not null"`
 	Name      string `gorm:"type:varchar(150);not null"`
-	Phone     string `gorm:"type:varchar(50);not null"`
+	Phone_cel string `gorm:"type:varchar(50);not null"`
 	Email     string `gorm:"type:varchar(200);not null"`
 	Curp      string `gorm:"type:varchar(18);not null"`
 	Suspended *bool  `gorm:"type:boolean"` //?  apunta a una dirección de memoria. Acepta nulos

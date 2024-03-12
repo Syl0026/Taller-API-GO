@@ -79,7 +79,7 @@ func requiredData(model *Models.AlumnModel) (bool, string) {
 		//& Este tipo se declaró al principio de la función.
 		return false, "Error, Email inválido, el email es requerido"
 	}
-	if len(model.Phone) == 0 { //& len indica la longitud de la variable
+	if len(model.Phone_cel) == 0 { //& len indica la longitud de la variable
 		return false, "Error, Teléfono inválido, el teléfono es requerido"
 	}
 
@@ -96,7 +96,7 @@ func requiredData(model *Models.AlumnModel) (bool, string) {
 	if len(model.Email) > 200 {
 		return false, "Error: Logitud máxima es 200"
 	}
-	if len(model.Phone) > 50 {
+	if len(model.Phone_cel) > 50 {
 		return false, "Error: Logitud máxima es 50"
 	}
 

@@ -13,15 +13,15 @@ import (
 
 func main() {
 	model := Models.AlumnModel{
-		Name:     "Juanito",
-		LastName: "Perez",
-		Curp:     "00000000000000000",
-		Email:    "juanpg@gmail.com",
-		Phone:    "9999999999",
+		IdAlumn:   1,
+		Name:      "Juanito",
+		LastName:  "Prez",
+		Curp:      "00000000000000000",
+		Email:     "npg@gmail.com",
+		Phone_cel: "9999999999",
 	}
-	Services.CreateAlumn(&model)
-
-	result, msg := Services.CreateAlumn(&model)
+	//Services.UpdateAlumn(&model)
+	result, msg := Services.UpdateAlumn(&model)
 	fmt.Println(result)
 	fmt.Println(msg)
 }

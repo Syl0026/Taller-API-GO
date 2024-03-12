@@ -12,7 +12,7 @@ func ConnectDB() *gorm.DB {
 	host := "localhost"
 	user := "postgres"
 	password := "12345"
-	databaseName := "tallerapi"
+	databaseName := "tallerapigo"
 	port := "5432"
 
 	//!-----------------
